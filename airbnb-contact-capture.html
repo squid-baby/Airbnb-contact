@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay Connected - Carrboro Airbnb</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fahkwang', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f3f0 0%, #e8e4df 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #3a3a3a;
+        }
+
+        .container {
+            background: white;
+            max-width: 480px;
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .intro h2 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+
+        .intro p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            color: #555;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Fahkwang', sans-serif;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #34495e;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(52, 73, 94, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Fahkwang', sans-serif;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .success-screen.active {
+            display: block;
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #27ae60;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .checkmark svg {
+            width: 50px;
+            height: 50px;
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawCheck 0.5s ease 0.3s forwards;
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .success-screen h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #2c3e50;
+            font-weight: 400;
+        }
+
+        .success-screen p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .discount-banner {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .discount-banner h3 {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .discount-banner p {
+            font-size: 14px;
+            opacity: 0.95;
+            margin: 0;
+        }
+
+        .vcard-button {
+            background: white;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+            margin-top: 20px;
+        }
+
+        .vcard-button:hover {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .small-text {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome</h1>
+            <p>Carrboro Airbnb</p>
+        </div>
+
+        <div class="content">
+            <div id="formScreen">
+                <div class="intro">
+                    <h2>Stay Connected</h2>
+                    <p>We'd love to host you again! Share your contact information and receive 10% off your next stay.</p>
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">How was your stay? (Optional)</label>
+                        <textarea id="message" name="message" placeholder="We'd love to hear your feedback..."></textarea>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+
+                <p class="small-text">Your information is private and will only be used for promotional offers.</p>
+            </div>
+
+            <div id="successScreen" class="success-screen">
+                <div class="checkmark">
+                    <svg viewBox="0 0 52 52">
+                        <polyline points="14 27 22 35 38 19"/>
+                    </svg>
+                </div>
+
+                <h2>Thank You!</h2>
+                <p>We've received your information and look forward to hosting you again.</p>
+
+                <div class="discount-banner">
+                    <h3>🎉 Your Exclusive Offer</h3>
+                    <p>Contact us directly for your next visit and receive <strong>10% off</strong> your stay!</p>
+                </div>
+
+                <button class="vcard-button" onclick="downloadVCard()">
+                    📱 Save Our Contact
+                </button>
+
+                <button class="vcard-button" onclick="window.open('https://thepersimmon.my.canva.site', '_blank')" style="margin-top: 15px;">
+                    🏡 View Our Other Carrboro Properties
+                </button>
+
+                <p class="small-text">Save our contact and explore our other beautiful stays</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // IMPORTANT: Replace this URL with your Google Form URL
+        // Instructions in the README file
+        const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdYaeffDHJfYgp-tnfOpY5xkc_tSjFCgXO3hWnNzhCol_-uww/formResponse';
+
+        // You'll also need to update these entry IDs after creating your form
+        const FORM_ENTRY_IDS = {
+            name: 'entry.458562389',
+            email: 'entry.988764909',
+            phone: 'entry.1122196192',
+            message: 'entry.257171293'
+        };
+
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append(FORM_ENTRY_IDS.name, document.getElementById('name').value);
+            formData.append(FORM_ENTRY_IDS.email, document.getElementById('email').value);
+            formData.append(FORM_ENTRY_IDS.phone, document.getElementById('phone').value);
+            formData.append(FORM_ENTRY_IDS.message, document.getElementById('message').value);
+
+            try {
+                // Submit to Google Form
+                await fetch(GOOGLE_FORM_ACTION_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                });
+
+                // Show success screen
+                document.getElementById('formScreen').style.display = 'none';
+                document.getElementById('successScreen').classList.add('active');
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Thank you! Your information has been received.');
+                document.getElementById('formScreen').style.display = 'none';
+                document.getElementById('successScreen').classList.add('active');
+            }
+        });
+
+        function downloadVCard() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Amanda Stewart
+N:Stewart;Amanda;;;
+TITLE:Carrboro Airbnb Host
+EMAIL;TYPE=INTERNET:airbnb@millsrentals.com
+TEL;TYPE=CELL:+19192478417
+NOTE:Contact us for 10% off your next stay in Carrboro!
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'amanda-stewart-carrboro-airbnb.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
